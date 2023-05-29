@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract Lec4 {
+contract Exam_Func {
     uint256 public a = 3;
 
     function changeA1() public {

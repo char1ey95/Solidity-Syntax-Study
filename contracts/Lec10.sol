@@ -1,7 +1,7 @@
 // // SPDX-License-Identifier: MIT
 // pragma solidity ^0.8.0;
 
-// contract Lec9 {
+// contract Lec10 {
 //     string public name;
 //     uint256 public age;
 
@@ -17,7 +17,7 @@
 // }
 
 // contract Lec9_2 {
-//     Lec9 instance = new Lec9("Char1ey", 29);
+//     Lec10 instance = new Lec10("Char1ey", 29);
 
 //     function change(string memory _name, uint256 _age) public {
 //         instance.change(_name, _age);
