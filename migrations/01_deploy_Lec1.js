@@ -11,12 +11,14 @@
 
 // const HowIsItSaved = artifacts.require("HowIsItSaved");
 
-const InstanceA = artifacts.require("InstanceA")
-const InstanceB = artifacts.require("InstanceB")
-const InstanceC = artifacts.require("InstanceC")
+// const InstanceA = artifacts.require("InstanceA")
+// const InstanceB = artifacts.require("InstanceB")
+// const InstanceC = artifacts.require("InstanceC")
+
+const InstanceD = artifacts.require("InstanceD")
+const InstanceE = artifacts.require("InstanceE")
 
 module.exports = (deployer) => {
-  deployer.deploy(InstanceA)
-  deployer.deploy(InstanceB)
-  deployer.deploy(InstanceC)
+  deployer.deploy(InstanceD, "Char1ey", 30)
+  deployer.deploy(InstanceE)
 };
