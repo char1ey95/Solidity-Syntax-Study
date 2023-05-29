@@ -7,6 +7,8 @@
 
 // const Exam_Func = artifacts.require("Exam_Func");
 
+// const Access1 = artifacts.require("Access1");
+
 // const State = artifacts.require("State");
 
 // const HowIsItSaved = artifacts.require("HowIsItSaved");
@@ -21,4 +23,5 @@ const InstanceE = artifacts.require("InstanceE")
 module.exports = (deployer) => {
   deployer.deploy(InstanceD, "Char1ey", 30)
   deployer.deploy(InstanceE)
+
 };

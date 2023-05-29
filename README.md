@@ -95,7 +95,7 @@ ex) 0.01ether는 10^16 wei로 표현된다.
 
 <br />
 
-## function
+## Function
 
 <br />
 
