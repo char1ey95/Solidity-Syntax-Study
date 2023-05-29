@@ -18,21 +18,3 @@ contract Access2 {
         changeA(b);
     }
 }
-
-
-    // function get_a() view public returns( uint256 ) {
-    //     return a;
-    // }
-
-
-// contract Access3 {
-//     Access2 instance = new Access2();
-
-//     function changeA1(uint256 _value) public {
-//         instance.changeA(_value);
-//     }
-
-//     function use_public_example() view public returns (uint256) {
-//         return instance.get_a();
-//     }
-// }

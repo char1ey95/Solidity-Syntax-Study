@@ -182,3 +182,91 @@ pure: function 밖의 변수들을 읽을 수 없고, 변경도 불가능
 인스턴스를 생성할 때 변수의 값을 넣어줄 때 사용한다.
 
 변수의 파라미터 값을 받고 스마트 컨트랙트를 생성할때,
+
+## 상속
+
+한 컨트랙트에서 다른 컨트랙트에 있는 기능들을 사용할 수 있다.
+
+contract [상속받을 컨트랙트 명] is [상속할 컨트랙트 명] { // 코드 작성 }
+
+## 오버라이딩
+
+상속받은 함수를 변형시켜서 사용할 수 있다.
+
+일종의 덮어쓰기라고 생각하면 된다.
+
+오버라이드할 함수에는 overide 키워드를 적어주고,
+
+내보내는 함수에는 virtual 키워드를 적어준다.
+
+*두 가지 컨트랜트 이상을 상속할 경우*
+
+is 다음에 순서대로 , 을 기준으로 상속할 컨트랙트를 적어주면 된다.
+
+오버라이딩 시에는 overide(컨트랙트, 컨트랙트)를 적어주어야 한다.
+
+```sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Bird {
+    uint256 public wings = 2;
+    uint256 public eatBird = 10;
+
+    function getBird() public view returns (uint256) {
+        return wings;
+    }
+
+    function getEatFish() public view virtual returns (uint256) {
+        return eatBird;
+    }
+}
+
+contract Fish {
+    bool public swim = true;
+    uint256 public eatFish = 5;
+
+    function getFish() public view returns (bool) {
+        return swim;
+    }
+
+    function getEatFish() public view virtual returns (uint256) {
+        return eatFish;
+    }
+}
+
+contract Penguin is Bird, Fish {
+    function getEatFish() public view override(Bird, Fish) returns (uint256) {
+        return eatBird + eatFish;
+    }
+}
+```
+
+*super*
+
+상속 후에 overide시에 기존 함수의 로직이 긴 경우
+
+전부 써주는 것은 비효율적이기 때문에 `super.[함수명]();` 을 해주면,
+
+기존 함수의 내용들을 적어주지 않아도 가져온 것 처럼된다.
+
+같은 함수명을 가진 컨트랙트 두가지를 상속받아 사용할 경우에는 마지막에있는 컨트랙트에게 super가 적용된다.
+
+마지막에 있는 상속의 내용이 가장 최신의 내용이기 때문이다.
+
+<br />
+
+## Event
+
+솔리디티에는 콘솔로그와 같은 기능이 존재하지 않는다.
+
+대신 event라는 것이 존재하고 event를 이용하면 블록체인 네트워크의 블록에 저장된다.
+
+저장된 값은 블록에 저장되어 언제든지 꺼내서 사용할 수 있다.
+
+
+*indexed*
+
+이벤트 내에서만 사용할 수 있는 키워드로,
+
+특정한 이벤트의 내용을 가져오는데 사용된다.
