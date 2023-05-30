@@ -286,3 +286,30 @@ contract Event {
 키와 값의 형태로 저장하는 타입이다.
 
 값을 출력할 때에는 키를 이용해서 값을 반환한다.
+
+**맵핑을 정의하는 법**
+
+```sol
+mapping([type] => [type]) [접근제한자] [변수명]
+
+[변수명][type 값] = [type 값]
+```
+
+
+## Array
+
+다른 언어들과 마찬가지로 length를 구할 수 있다.
+
+또한 for loop문을 통해서 값들을 순회할 수 있다.
+
+솔리디티에서는 Array보단 mapping을 선호한다.
+
+Array는 순회할 수 있기 때문에 해커가 악의적으로 사용하면 DDos공격과 같은 악성코드를 실행할 여지가 있기 떄문이다.
+
+**배열을 정의하는 방법**
+
+```sol
+contract Array {
+    uint256[] public ageArray;
+}
+```
