@@ -244,7 +244,7 @@ contract Penguin is Bird, Fish {
 
 *super*
 
-상속 후에 overide시에 기존 함수의 로직이 긴 경우
+상속 후에 override시에 기존 함수의 로직이 긴 경우
 
 전부 써주는 것은 비효율적이기 때문에 `super.[함수명]();` 을 해주면,
 

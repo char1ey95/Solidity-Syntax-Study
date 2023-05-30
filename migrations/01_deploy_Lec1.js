@@ -26,9 +26,11 @@
 // const Bird = artifacts.require("Bird")
 // const Penguin = artifacts.require("Penguin")
 
-const EventExam = artifacts.require("EventExam")
+// const EventExam = artifacts.require("EventExam")
+
+const ExamScore = artifacts.require("ExamScore")
 
 module.exports = (deployer) => {
-  deployer.deploy(EventExam)
+  deployer.deploy(ExamScore)
 
 };
