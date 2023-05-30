@@ -1,28 +1,28 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract Father {
-    string public lastName = "Kang";
-    string public firstName = "Char1ey";
-    uint256 public money = 100;
+contract Bird {
+    uint256 public wings = 2;
+    uint256 public legs = 2;
+    string public eat;
 
-    constructor(string memory _firstName){
-        firstName = _firstName;
+    constructor(string memory _eat){
+        eat = _eat;
     }
 
-    function getLastName() view public returns(string memory){
-        return lastName;
+    function getWingsNum() view public returns(uint256){
+        return wings;
     }
 
-    function getFirstName() view public returns(string memory){
-        return firstName;
+    function getLegsNum() view public returns(uint256){
+        return legs;
     }
     
-    function getMoney() view public returns(uint256){
-        return money;
+    function getNmae() view public returns(string memory){
+        return eat;
     }
 }
 
-contract Son is Father("Steve") {
+contract Eagle is Bird("Snake") {
 
 }

@@ -264,6 +264,16 @@ contract Penguin is Bird, Fish {
 
 저장된 값은 블록에 저장되어 언제든지 꺼내서 사용할 수 있다.
 
+```
+contract Event {
+    event [이벤트명](타입 [매개변수 명]);
+
+    function 함수명 () public {
+        emit [이벤트명](인자);
+    }
+}
+```
+
 
 *indexed*
 

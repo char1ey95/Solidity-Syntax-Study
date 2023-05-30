@@ -17,11 +17,18 @@
 // const InstanceB = artifacts.require("InstanceB")
 // const InstanceC = artifacts.require("InstanceC")
 
-const InstanceD = artifacts.require("InstanceD")
-const InstanceE = artifacts.require("InstanceE")
+// const InstanceD = artifacts.require("InstanceD")
+// const InstanceE = artifacts.require("InstanceE")
+
+// const Bird = artifacts.require("Bird")
+// const Eagle = artifacts.require("Eagle")
+
+// const Bird = artifacts.require("Bird")
+// const Penguin = artifacts.require("Penguin")
+
+const EventExam = artifacts.require("EventExam")
 
 module.exports = (deployer) => {
-  deployer.deploy(InstanceD, "Char1ey", 30)
-  deployer.deploy(InstanceE)
+  deployer.deploy(EventExam)
 
 };
