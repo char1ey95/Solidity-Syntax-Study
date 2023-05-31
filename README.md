@@ -316,5 +316,18 @@ contract Array {
 
 ## Struct
 
-타입을 새로 만드는 것
-객체와 비슷한 느낌이다.
+타입을 새로 만드는 것이다.
+
+객체(인터페이스)와 비슷한 느낌이다.
+
+문법은 다음과 같이 쓴다.
+
+```sol
+struct Person {
+    string name;
+    uint256 age;
+    uint256 height;
+}
+```
+
+struct 타입은 memory를 적어줘야 한다는 점에 유의하자.
