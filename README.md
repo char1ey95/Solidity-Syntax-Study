@@ -313,3 +313,8 @@ contract Array {
     uint256[] public ageArray;
 }
 ```
+
+## Struct
+
+타입을 새로 만드는 것
+객체와 비슷한 느낌이다.
