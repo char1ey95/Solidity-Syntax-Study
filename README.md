@@ -402,23 +402,47 @@ continue, break
 
 버전에 따라서 조금씩 문법이 바뀐다.
 
+0.8.1 ~ 부터 변경
+
+
 **assert**
 
+- ~ 0.8.0 : 가스환불 X
+- 0.8.1 ~ : 가스환불 O, assert로 발생한 에러는 Panic 타입의 에러에 속한다.(Error Exception)
 - 가스를 모두 소비한 후, 특정한 조건에 부합하지 않으면 에러를 발생시킨다.
 - 주로 스마트 컨트랙트의 테스트 용도로 사용한다.
 
 **revert**
 
+- ~ 0.8.0 :
+- 0.8.1 ~ :
 - 조건없이 에러를 발생시키고, gas를 환불 시켜준다.
 - 조건문과 함께 사용하여 조건에 따라 에러를 발생시킨다.
 
 **require**
 
+- ~ 0.8.0 :
+- 0.8.1 ~ :
 - 특정한 조건에 부합하지 않으면 에러를 발생시키고, gas를 환불 시켜준다.
-- 
 
 **try/catch**
 
 - 위의 세가지 에러핸들링은 에러가 발생하면 프로그램이 종료되지만, try catch는 에러가 나도 프로그램을 종료시키지 않고 어떻게 코드를 실행할 지 정할 수 있다.
 
-- try catch문 안에서 
+- try catch문 안에서 assert/revert/require를 통해 에러가 발생하면 catch로 에러를 잡지않고, 프로그램을 종료시킨다 => 개발자가 의도한 에러로 인식한다.
+
+- try catch문 밖에서 assert/revert/require를 통해 에러가 발생하면 catch는 에러를 잡고 Error를 핸들링한다.
+
+*catch의 종류*
+
+```
+catch Error(string memory reason) { ... } : revert나 require을 통해 생서된 에러
+catch Panic(uint `errorCode`) { ... } : assert를 통해 생성된 에러가 날 때 이 catch에 잡힌다.
+
+errorCode는 솔리디티 공식문서에 Panic 에러별로 나온다.
+
+```
+
+*에러의 종류*
+
+- Solidity는 특정에러들을 정의하고 있다.
