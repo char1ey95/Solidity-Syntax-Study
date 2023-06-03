@@ -437,6 +437,7 @@ continue, break
 
 ```
 catch Error(string memory reason) { ... } : revert나 require을 통해 생서된 에러
+
 catch Panic(uint `errorCode`) { ... } : assert를 통해 생성된 에러가 날 때 이 catch에 잡힌다.
 
 errorCode는 솔리디티 공식문서에 Panic 에러별로 나온다.
