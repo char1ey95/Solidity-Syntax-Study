@@ -24,3 +24,9 @@ payable은 주로 함수, 주소, 생성자에 붙여서 사용된다.
 19년 이후 가스의 가격이 오르면서 send, transfer를 이용해서 sc를 사용하기에 부족해진다.
 
 call의 사용을 권장하게되는데, 재진입공격에 취약한 call
+
+## address.balance 속성
+
+address.balance는 특정 주소(address)의 현재 갖고있는 이더의 잔액을 나타낸다.
+
+msg.sender는 스마트컨트랙을 사용하는 주체(클라이언트)이다.
