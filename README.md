@@ -466,3 +466,131 @@ function [함수명]() 접근제한자 [modifier 이름] (인자) {
 ```
 
 - 뒤에있는 modifier의 인자는 앞에 있는 함수의 인자를 받아온다.
+
+## fallback 함수
+
+fallback 함수는 이름 그대로 대비책 함수이다.
+
+특징
+1. 익명 함수이다.
+2. external 함수이다.
+3. payable을 붙여야한다.
+
+용도
+1. 스마트 컨트랙이 이더를 받을 수 있게 한다.
+2. 이더를 받고난 후에 어떤 동작을 할지 정의할 수 있다.
+3. call 함수로 없는 함수가 불려질 때 어떤 행동을 취하게 할 수 있다.
+
+call은 외부 스마트 컨트랙의 함수를 사용할 수 있다.
+
+외부 스마트 컨트랙에 특점 함수가 없을 경우 그 함수의 fallback을 발동 시킬 수 있다.
+
+```ts
+// 0.6 이전
+function() external payable {}
+// 0.6 이후
+// receive : 순수하게 이더만 받을 경우 사용
+// fallback : 함수를 실행하면서 이더를 보낼 경우, 불러진 함수가 없을 때 사용한다.
+fallback () external {}
+fallback () external payable {}
+receive () external payable {}
+```
+
+## payable
+
+Payable은 이더/토큰과 상호작용시 필요한 키워드이다.
+
+이더를 보내거나 받을경우에는 함수에 payable을 붙여주어야한다.
+
+payable은 보통 send transfer call 과 함꼐 사용한다.
+
+payable은 주로 함수, 주소, 생성자에 붙여서 사용된다.
+
+이더를 보내는 3가지 함수가 있다.
+
+`send` : 솔리디티 초기에 이더를 보내는 함수
+-  가스를 2300 소비하고 성공여부를 true false를 반환
+- 에러를 보내지 못하는 단점
+
+`call` : send와 다르게 가스를 얼마나 소비(gas값)할지 지정이 가능
+- 에러를 보내지 못하는 단점
+- 재진입공격에 취약해진다.
+    - 한개의 sc가 다른 sc로 이더를 보내는 과정이 무한반복
+
+`transfer`(~0.4.14) : 2300 가스를 소비, 실패시 에러를 발생
+
+19년 이후 가스의 가격이 오르면서 send, transfer를 이용해서 sc를 사용하기에 부족해진다.
+
+call의 사용을 권장하게되는데, 재진입공격에 취약한 call
+
+## address.balance 속성
+
+address.balance는 특정 주소(address)의 현재 갖고있는 이더의 잔액을 나타낸다.
+
+msg.sender는 스마트컨트랙을 사용하는 주체(클라이언트)이다.
+
+
+## payable을 생성자에 넣어줄 경우
+
+- 함수, 주소, 생성자에 붙인다
+
+===
+
+## call(low level function)
+
+**call의 역할**
+1. 이더를 송금할 수 있다.
+2. 외부 스마트 컨트랙트를 부를 수 있다.
+3. 가변적인 가스의 소모를 할 수 있다.( <--> send, transfer )
+4. 이스탄불 하드포크 이후에 call의 사용을 권장
+5. `re-entrancy(재진입)` 공격위험으로 인해 Checks_Effects_Interactions_pattern을 사용해야한다.
+
+
+<br />
+
+※ abi는 이더리움 환경에서 코드가 작동할 수 있도록 작성된 파일이다.
+
+## delegate call
+
+- msg.sender가 본래의 스마트 컨트랙트를 나타낸다.
+- delegate call이 정의된 스마트 컨트랙(caller)이 외부 컨트랙의 함수들을 마치 자신의 것처럼 사용(실질적인 값도 caller에 저장)
+
+단, 외부 스마트 컨트랙과 caller 스마트 컨트랙은 같은 변수를 갖고 있어야한다.
+
+```ts
+주소.delegatecall()
+```
+
+## enum
+
+enum을 쓰는 이유는 특정한 상태 조건을 나타낸다.
+
+```sol
+enum [변수명] {
+    [enum 변수명],
+    [enum 변수명],
+    [enum 변수명],
+    ...
+}
+
+```
+
+<br />
+
+선택하는 방법
+
+<br />
+
+```sol
+[변수명].[enum 변수명]
+```
+
+## interface
+
+스마트 컨트랙트 내에서 정의되어야할 필요한 것
+
+1. 함수는 exteran로 표시
+2. enum, structs 가능
+3. 변수나 생성자는 불가
+
+인터페이스를 상속 받았을 경우에는 함수는 인터페이스에 정의한 모든 속성, 함수 등을 가지고 있어야 한다.
